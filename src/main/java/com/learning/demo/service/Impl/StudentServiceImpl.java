@@ -24,7 +24,6 @@ public class StudentServiceImpl implements StudentService {
             return Result.ofFail("你已经报名成功！无需再次报名");
         student.setRegisteredAt(LocalDateTime.now());
         if(studentMapper.addStudent(student) == 1){
-            System.out.println(student);
             mailService.sendSimpleMail("719424727@qq.com", student.getEmail(), "content");
             return Result.ofSuccess("报名成功！");
         } else {

@@ -1,10 +1,8 @@
 package com.learning.demo.service.Impl;
 
 import com.learning.demo.entity.Administrator;
-import com.learning.demo.entity.Department;
 import com.learning.demo.entity.Result;
 import com.learning.demo.mapper.AdminMapper;
-import com.learning.demo.mapper.DepartmentMapper;
 import com.learning.demo.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
