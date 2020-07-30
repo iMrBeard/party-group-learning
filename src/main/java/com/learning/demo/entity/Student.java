@@ -2,12 +2,16 @@ package com.learning.demo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Student {
     @NotBlank
     @Size(min = 13,max = 13,message = "请填写学号！")
@@ -35,7 +39,7 @@ public class Student {
 
     private boolean adjustable;
 
-    private Date registeredAt;
+    private LocalDateTime registeredAt;
 
 
 }

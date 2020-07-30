@@ -11,7 +11,7 @@ public interface DepartmentMapper {
 
     int updateDepartment(Department department);
 
-    Department isExistDept(Integer departmentId);
+    Department isExistDept(String departmentName);
 
     List<Department> getDepartments();
 }

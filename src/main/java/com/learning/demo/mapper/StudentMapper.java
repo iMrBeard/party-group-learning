@@ -14,4 +14,7 @@ public interface StudentMapper {
     int deleteStudent(String studentId);
 
     Student isExistStu(String studentId);
+
+    int numberOfRegistered(String departmentName);
+
 }

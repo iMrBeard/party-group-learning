@@ -15,12 +15,12 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @GetMapping(value = "/students")
+    @GetMapping(value = "/students",produces = "application/json")
     List<Student> getStudents(){
         return studentService.getStudents();
     }
     @PostMapping(value = "/addStudent")
-    Result addStudent(Student student){
+    Result addStudent(@RequestBody Student student){
         return studentService.addStudent(student);
     }
     @DeleteMapping(value = "/deleteStudent")

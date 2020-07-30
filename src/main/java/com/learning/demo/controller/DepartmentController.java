@@ -31,7 +31,7 @@ public class DepartmentController {
     }
 
     @DeleteMapping(value = "/deleteDepartment")
-    Result deleteDepartment(@RequestBody Integer departmentId){
+    Result deleteDepartment(int departmentId){
         return departmentService.deleteDepartment(departmentId);
     }
 }

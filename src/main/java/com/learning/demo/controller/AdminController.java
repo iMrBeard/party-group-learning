@@ -20,7 +20,7 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @GetMapping(value = "/getAdmins",produces = "applications/json")
+    @GetMapping(value = "/getAdmins",produces = "application/json")
     List<Administrator> getAdmins(){
         return adminService.getAdmins();
     }
@@ -31,8 +31,8 @@ public class AdminController {
     }
 
     @DeleteMapping(value = "/deleteAdmin")
-    Result deleteAdmin(@RequestBody String adminAccount){
-        return adminService.deleteAdmin(adminAccount);
+    Result deleteAdmin(String adminAccount){
+        System.out.println(adminAccount);return adminService.deleteAdmin(adminAccount);
     }
 
 }

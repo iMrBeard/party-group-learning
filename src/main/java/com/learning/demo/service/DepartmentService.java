@@ -12,5 +12,5 @@ public interface DepartmentService {
 
     Result addDepartment(Department department);
 
-    Result deleteDepartment(Integer departmentId);
+    Result deleteDepartment(Integer departmentName);
 }

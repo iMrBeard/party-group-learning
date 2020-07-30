@@ -2,7 +2,9 @@ package com.learning.demo.service.Impl;
 
 import com.learning.demo.entity.Department;
 import com.learning.demo.entity.Result;
+import com.learning.demo.entity.Student;
 import com.learning.demo.mapper.DepartmentMapper;
+import com.learning.demo.mapper.StudentMapper;
 import com.learning.demo.service.DepartmentService;
 import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     private DepartmentMapper departmentMapper;
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Override
     public List<Department> getDepartments() {
@@ -23,6 +27,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Result updateDepartment(Department department) {
+        int total = studentMapper.numberOfRegistered(department.getDepartmentName());
+        department.setRemaining(department.getCapacity()-total);
         if(departmentMapper.updateDepartment(department) == 1)
             return Result.ofSuccess("部门更新成功！");
         else return Result.ofFail("部门更新失败！");
@@ -30,11 +36,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Result addDepartment(Department department) {
-        if(departmentMapper.isExistDept(department.getDepartmentId())!=null)
+        if(departmentMapper.isExistDept(department.getDepartmentName())!=null) {
             return Result.ofFail("部门已经存在！");
-        if(departmentMapper.addDepartment(department) == 1 )
-            return Result.ofSuccess("部门添加成功！");
-        else return Result.ofFail("部门添加失败");
+        } else {
+            department.setRemaining(department.getCapacity());
+            if(departmentMapper.addDepartment(department) == 1 )
+                return Result.ofSuccess("部门添加成功！");
+            else
+                return Result.ofFail("部门添加失败");}
     }
 
     @Override

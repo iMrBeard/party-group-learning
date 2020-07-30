@@ -21,7 +21,7 @@
         SELECT * FROM department;
     </select>
     <select id="isExistDept" resultType="department">
-        SELECT * FROM department WHERE department_id = #{departmentId};
+        SELECT * FROM department WHERE department_Name = #{departmentName};
     </select>
 
 </mapper>

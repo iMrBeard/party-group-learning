@@ -17,4 +17,7 @@
     <select id="getStudents" resultType="student">
         SELECT * FROM student;
     </select>
+    <select id="numberOfRegistered" resultType="int">
+        SELECT COUNT(*) FROM student WHERE department_name = #{departmentName};
+    </select>
 </mapper>
