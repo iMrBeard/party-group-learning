@@ -2,6 +2,7 @@ package com.learning.demo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
 import java.util.Date;
@@ -13,11 +14,12 @@ public class Student {
     @Size(min = 13,max = 13,message = "请填写学号！")
     private String studentId;
 
+    @NotBlank
+    private String gender;
+
     @NotBlank(message = "请填写班级！")
     private String className;
 
-    @NotBlank
-    private String gender;
 
     @NotBlank(message = "请填写姓名！")
     private String realName;
@@ -32,6 +34,14 @@ public class Student {
 
     @NotBlank(message = "请填写民族！")
     private String nation;
+
+    //wyh
+    @NotBlank(message = "请输入个人描述")
+    private String description;
+
+    @NotBlank(message = "请上传图片")
+    private String avatarUrl;
+    //wyh
 
     private boolean adjustable;
 

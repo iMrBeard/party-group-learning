@@ -20,5 +20,4 @@ public class MailServiceImpl implements MailService {
         message.setSubject("欢迎加入党团学新xx部门！");
         message.setText(content);
     }
-
 }

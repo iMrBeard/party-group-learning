@@ -30,17 +30,46 @@ class DemoApplicationTests {
     AdminMapper adminMapper;
     @Autowired
     DepartmentMapper departmentMapper;
-    @Test
-    void testStudentMapper(){
-        studentMapper.deleteStudent("1");
 
-    }
-    @Test
-    void testAdminMapper(){
-//        Administrator administrator = new Administrator("account","pwd","authority");
-//        adminMapper.addAdmin(new Administrator("account","pwd","authority"));
-        adminMapper.deleteAdmin("account");
-    }
+//    @Test
+//    void testStudentMapper(){
+//        Student student = new Student("4", "计科", "男", "吴义虎", "1726036835@qq.com", "党团", "719424727", "汉","好看" ,"456",true,new Date());
+//        Student student2 = new Student("1", "计科", "男", "吴义虎", "1726036835@qq.com", "党团", "719424727", "汉", "帅气","123",true,new Date());
+//        studentMapper.addStudent(student);
+//        studentMapper.addStudent(student2);
+//        studentMapper.deleteStudent("1");
+//        studentMapper.deleteStudent("4");
+//        System.out.println(studentMapper.isExistStu("4"));
+//        System.out.println(studentMapper.getStudents());
+//    }
+
+//    @Test
+//    void testAdminMapper(){
+//        adminMapper.addAdmin(new Administrator("account1","pwd","authority"));
+//        adminMapper.addAdmin(new Administrator("account2","pwd","authority"));
+//
+//        System.out.println(adminMapper.getAdmins());
+//
+//        adminMapper.deleteAdmin("account1");
+//        adminMapper.deleteAdmin("account2");
+//    }
+
+//    @Test
+//    void  testDepartmentMapper(){
+//        Department department=new Department(101,"信息","好",30,60);
+//        Department department1=new Department(101,"信息","好",20,60);
+//
+//        departmentMapper.addDepartment(department);
+//
+//        System.out.println(departmentMapper.getDepartments());
+//
+//        departmentMapper.updateDepartment(department1);
+//        System.out.println(departmentMapper.getDepartments());
+//
+//        departmentMapper.deleteDepartment(101);
+//    }
+
+/*
     @Test
     void testFindAllDept(){
 //        departmentMapper.addDepartment(new Department("name","des",10,10));
@@ -60,7 +89,7 @@ class DemoApplicationTests {
     }
     @Test
     void addStudent(){
-        Student student = new Student("4", "信息", "男", "贺绪清", "719424727@qq.com", "党团", "719424727", "汉", true, new Date());
+        Student student = new Student("4", "信息", "男", "贺绪清", "719424727@qq.com", "党团", "719424727", "汉", "大哥",true,new Date());
         studentMapper.addStudent(student);
     }
     @Test
@@ -89,5 +118,7 @@ class DemoApplicationTests {
         mailMessage.setText("请加群xxxxxxxxx。");
         javaMailSender.send(mailMessage);
     }
+
+    */
 
 }
