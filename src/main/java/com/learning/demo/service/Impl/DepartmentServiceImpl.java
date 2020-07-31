@@ -2,11 +2,9 @@ package com.learning.demo.service.Impl;
 
 import com.learning.demo.entity.Department;
 import com.learning.demo.entity.Result;
-import com.learning.demo.entity.Student;
 import com.learning.demo.mapper.DepartmentMapper;
 import com.learning.demo.mapper.StudentMapper;
 import com.learning.demo.service.DepartmentService;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

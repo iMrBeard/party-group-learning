@@ -3,11 +3,8 @@ package com.learning.demo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -36,6 +33,11 @@ public class Student {
 
     @NotBlank(message = "请填写民族！")
     private String nation;
+
+    @NotBlank(message = "请输入个人简介！")
+    private String description;
+
+    private String avatar;
 
     private boolean adjustable;
 
