@@ -4,9 +4,13 @@ import com.learning.demo.entity.Result;
 import com.learning.demo.entity.Student;
 import com.learning.demo.entity.TempEntity;
 import com.learning.demo.service.StudentService;
+import com.learning.demo.util.ErrorsToMessage;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @Api(tags = "学生控制类")
@@ -25,8 +29,12 @@ public class StudentController {
 
     @ApiOperation(value = "学生提交报名表和一寸照片",httpMethod = "POST",produces = "multipart/form-data")
     @PostMapping(value = "/addStudent")
-    Result addStudent(TempEntity tempEntity){
-        return studentService.addStudent(tempEntity.getStudent(),tempEntity.getFile());
+    Result addStudent(@Valid TempEntity tempEntity, Errors errors){
+        if (errors.hasErrors()){
+            return Result.ofFail(ErrorsToMessage.getMessage(errors));
+        } else {
+            return studentService.addStudent(tempEntity.getStudent(),tempEntity.getFile());
+        }
     }
 
 

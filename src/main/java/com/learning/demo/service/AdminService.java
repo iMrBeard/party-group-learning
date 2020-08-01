@@ -2,6 +2,7 @@ package com.learning.demo.service;
 
 import com.learning.demo.entity.Administrator;
 import com.learning.demo.entity.Result;
+
 import java.util.List;
 
 public interface AdminService {
@@ -11,4 +12,6 @@ public interface AdminService {
     Result deleteAdmin(String account);
 
     List<Administrator> getAdmins();
+
+    Result login(String account,String pwd);
 }

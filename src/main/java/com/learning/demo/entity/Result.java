@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Result implements Serializable {
+public class Result<T> implements Serializable {
 
     private boolean success;
     private Long ts = System.currentTimeMillis();

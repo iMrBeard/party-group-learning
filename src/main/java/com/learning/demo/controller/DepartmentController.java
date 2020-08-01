@@ -3,10 +3,13 @@ package com.learning.demo.controller;
 import com.learning.demo.entity.Department;
 import com.learning.demo.entity.Result;
 import com.learning.demo.service.DepartmentService;
+import com.learning.demo.util.ErrorsToMessage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,13 +32,20 @@ public class DepartmentController {
             notes = "部门Id和剩余容量自动生成"
     )
     @PostMapping(value = "/addDepartment")
-    Result addDepartment(@RequestBody Department department){
-        return departmentService.addDepartment(department);
+    Result addDepartment(@Valid @RequestBody Department department,Errors errors){
+        if (errors.hasErrors()){
+            return Result.ofFail(ErrorsToMessage.getMessage(errors));
+        } else {
+            return departmentService.addDepartment(department);
+        }
     }
 
     @ApiOperation(value = "更新部门",httpMethod = "PUT",produces = "application/json")
     @PutMapping(value = "/updateDepartment")
-    Result updateDepartment(@RequestBody Department department){
+    Result updateDepartment(@Valid @RequestBody Department department, Errors errors){
+        if(errors.hasErrors()){
+            return Result.ofFail(ErrorsToMessage.getMessage(errors));
+        }
         return departmentService.updateDepartment(department);
     }
 

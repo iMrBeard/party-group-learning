@@ -41,4 +41,9 @@ public class AdminController {
         return adminService.deleteAdmin(adminAccount);
     }
 
+    @ApiOperation(value = "管理员登录！")
+    @PostMapping(value = "/login")
+    Result login(String account,String pwd){
+        return adminService.login(account,pwd);
+    }
 }
