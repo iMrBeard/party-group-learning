@@ -3,6 +3,7 @@ package com.learning.demo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.relational.core.mapping.Column;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
@@ -36,6 +37,8 @@ public class Student {
 
     @NotBlank(message = "请填写民族！")
     private String nation;
+    @Column
+    private String description;
 
     private boolean adjustable;
 

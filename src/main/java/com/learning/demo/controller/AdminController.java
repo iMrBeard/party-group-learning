@@ -33,6 +33,8 @@ public class AdminController {
     @DeleteMapping(value = "/deleteAdmin")
     Result deleteAdmin(String adminAccount){
         System.out.println(adminAccount);return adminService.deleteAdmin(adminAccount);
+
     }
+
 
 }

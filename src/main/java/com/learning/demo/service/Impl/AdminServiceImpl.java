@@ -2,12 +2,21 @@ package com.learning.demo.service.Impl;
 
 import com.learning.demo.entity.Administrator;
 import com.learning.demo.entity.Result;
+import com.learning.demo.entity.Student;
 import com.learning.demo.mapper.AdminMapper;
 import com.learning.demo.service.AdminService;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -36,4 +45,6 @@ public class AdminServiceImpl implements AdminService {
     public List<Administrator> getAdmins() {
         return adminMapper.getAdmins();
     }
+
+
 }

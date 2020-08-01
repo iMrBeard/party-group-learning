@@ -15,7 +15,7 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @GetMapping(value = "/students",produces = "application/json")
+    @GetMapping(value = "/getStudents", produces = "application/json")
     List<Student> getStudents(){
         return studentService.getStudents();
     }

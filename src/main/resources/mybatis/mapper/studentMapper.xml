@@ -7,9 +7,10 @@
         DELETE FROM student WHERE student_id = #{studentId}
     </delete>
     <insert id="addStudent" parameterType="student">
-        INSERT INTO
-        student(student_id,gender,class_name,real_name,email,department_name,nation,adjustable,qq_number,registered_at)
-        VALUES (#{studentId},#{gender},#{className},#{realName},#{email},#{departmentName},#{nation},#{adjustable},#{qqNumber},#{registeredAt})
+        INSERT INTO student(student_id, gender, class_name, real_name, email, department_name, nation, adjustable,
+                            qq_number, registered_at, description)
+        VALUES (#{studentId}, #{gender}, #{className}, #{realName}, #{email}, #{departmentName}, #{nation},
+                #{adjustable}, #{qqNumber}, #{registeredAt}, #{description})
     </insert>
     <select id="isExistStu" parameterType="String" resultType="student">
         SELECT * FROM student WHERE student_id = #{studentId};
