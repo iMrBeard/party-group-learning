@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learning.demo.mapper.StudentMapper">
+    <delete id="deleteStudent" parameterType="String">
+        DELETE FROM student WHERE student_id = #{studentId}
+    </delete>
+
+    <!--wyh-->
+    <insert id="addStudent" parameterType="student">
+        INSERT INTO
+        student(student_id,avatar,description,gender,class_name,real_name,email,department_name,nation,adjustable,qq_number,registered_at)
+        VALUES (#{studentId},#{avatar},#{gender},#{description},#{className},#{realName},#{email},#{departmentName},#{nation},#{adjustable},#{qqNumber},#{registeredAt})
+
+    </insert>
+    <!--wyh-->
+
+    <select id="isExistStu" parameterType="String" resultType="student">
+        SELECT * FROM student WHERE student_id = #{studentId};
+    </select>
+
+    <select id="getStudents" resultType="student">
+        SELECT * FROM student;
+    </select>
+    <select id="numberOfRegistered" resultType="int">
+        SELECT COUNT(*) FROM student WHERE department_name = #{departmentName};
+    </select>
+</mapper>

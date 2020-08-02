@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learning.demo.mapper.DepartmentMapper">
+    <insert id="addDepartment" parameterType="department">
+        INSERT INTO department(department_name,description,capacity,remaining)
+        VALUES(#{departmentName},#{description},#{capacity},#{remaining});
+    </insert>
+    <delete id="deleteDepartment">
+        DELETE FROM department WHERE department_id = #{departmentId}
+    </delete>
+    <update id="updateDepartment" parameterType="department">
+        UPDATE department SET department_name = #{departmentName},
+        description = #{description},
+        capacity = #{capacity},
+        remaining = #{remaining}
+        WHERE department_id = #{departmentId};
+    </update>
+    <select id="getDepartments" resultType="department">
+        SELECT * FROM department;
+    </select>
+    <select id="isExistDept" resultType="department">
+        SELECT * FROM department WHERE department_Name = #{departmentName};
+    </select>
+
+</mapper>
