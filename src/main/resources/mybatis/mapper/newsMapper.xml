@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learning.demo.mapper.NewsMapper">
+    <insert id="addNews" parameterType="news">
+        INSERT INTO news(news_name, contains, news_date, news_id)
+        VALUES (#{newsName}, #{contains}, #{newsDate}, #{newsId});
+    </insert>
+    <delete id="deleteNews">
+        DELETE
+        FROM news
+        WHERE news_id = #{newsId}
+    </delete>
+    <update id="updateNews" parameterType="news">
+        UPDATE news
+        SET news_name = #{newsName},
+            contains  = #{contains},
+            news_date = #{newsDate}
+        WHERE news_id = #{newsId};
+    </update>
+    <select id="getNews" resultType="news">
+        SELECT *
+        FROM news;
+    </select>
+    <select id="isExistNews" resultType="news">
+        SELECT *
+        FROM news
+        WHERE news_Name = #{newsName};
+    </select>
+
+</mapper>
