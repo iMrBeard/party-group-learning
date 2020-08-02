@@ -21,6 +21,7 @@ public class StudentServiceImpl implements StudentService {
     StudentMapper studentMapper;
     @Autowired
     MailService mailService;
+
     @Autowired
     DepartmentMapper departmentMapper;
     @Override
