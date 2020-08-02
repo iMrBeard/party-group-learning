@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
 
     private boolean success;
-    private Long ts = System.currentTimeMillis();
+//    private Long ts = System.currentTimeMillis();
     private String message;
 
     public static Result ofSuccess(String message){

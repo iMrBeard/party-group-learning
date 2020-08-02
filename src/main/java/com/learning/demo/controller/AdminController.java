@@ -5,8 +5,13 @@ import com.learning.demo.entity.Result;
 import com.learning.demo.service.AdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.Model;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -36,14 +41,22 @@ public class AdminController {
     }
 
     @ApiOperation(value = "删除管理员",notes = "通过管理员账号删除管理员",httpMethod = "DELETE")
-    @DeleteMapping(value = "/deleteAdmin/{account}")
-    Result deleteAdmin(@PathVariable String adminAccount){
+    @DeleteMapping(value = "/deleteAdmin")
+    Result deleteAdmin(@RequestParam String adminAccount){
         return adminService.deleteAdmin(adminAccount);
     }
 
     @ApiOperation(value = "管理员登录！")
     @PostMapping(value = "/login")
-    Result login(String account,String pwd){
+    Result login(String account, String pwd, Model model, HttpSession httpSession){
+        httpSession.setAttribute("userLoginInfo",account);
         return adminService.login(account,pwd);
+    }
+
+    @ApiOperation(value="管理员登出")
+    @PostMapping(value = "/logOut")
+    Result logOut(HttpSession httpSession){
+        httpSession.removeAttribute("userLoginInfo");
+        return adminService.logOut();
     }
 }

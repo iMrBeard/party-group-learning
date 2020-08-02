@@ -14,4 +14,6 @@ public interface AdminService {
     List<Administrator> getAdmins();
 
     Result login(String account,String pwd);
+
+    Result logOut();
 }
