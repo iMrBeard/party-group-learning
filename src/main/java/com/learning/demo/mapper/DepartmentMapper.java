@@ -14,4 +14,5 @@ public interface DepartmentMapper {
     Department isExistDept(String departmentName);
 
     List<Department> getDepartments();
+
 }

@@ -36,14 +36,17 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Result addDepartment(Department department) {
-        if(departmentMapper.isExistDept(department.getDepartmentName())!=null) {
+        Department department1 = departmentMapper.isExistDept("feidian");
+        System.out.println(department1);
+        if (departmentMapper.isExistDept(department.getDepartmentName()) != null) {
             return Result.ofFail("部门已经存在！");
         } else {
             department.setRemaining(department.getCapacity());
-            if(departmentMapper.addDepartment(department) == 1 )
+            if (departmentMapper.addDepartment(department) == 1)
                 return Result.ofSuccess("部门添加成功！");
             else
-                return Result.ofFail("部门添加失败");}
+                return Result.ofFail("部门添加失败");
+        }
     }
 
     @Override
