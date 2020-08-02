@@ -1,7 +1,9 @@
 package com.learning.demo.service.Impl;
 
+import com.learning.demo.entity.Department;
 import com.learning.demo.entity.Result;
 import com.learning.demo.entity.Student;
+import com.learning.demo.mapper.DepartmentMapper;
 import com.learning.demo.mapper.StudentMapper;
 import com.learning.demo.service.MailService;
 import com.learning.demo.service.StudentService;
@@ -19,10 +21,16 @@ public class StudentServiceImpl implements StudentService {
     StudentMapper studentMapper;
     @Autowired
     MailService mailService;
+
+    @Autowired
+    DepartmentMapper departmentMapper;
     @Override
     public Result addStudent(Student student, MultipartFile file) {
+        Department department = departmentMapper.isExistDept(student.getDepartmentName());
         if(studentMapper.isExistStu(student.getStudentId())!=null)
             return Result.ofFail("你已经报名成功！无需再次报名");
+        if (department.getRemaining() == 0)
+            return Result.ofFail("该部门报名人数已达上限");
         if(file.isEmpty())
             return Result.ofFail("请上传头像");
         try {
@@ -35,6 +43,8 @@ public class StudentServiceImpl implements StudentService {
         student.setAvatar("/home/hxq/"+student.getRealName());
         student.setRegisteredAt(LocalDateTime.now());
         if(studentMapper.addStudent(student) == 1){
+            department.setRemaining(department.getRemaining() - 1);
+            departmentMapper.updateDepartment(department);
             mailService.sendSimpleMail("719424727@qq.com", student.getEmail(), "content");
             return Result.ofSuccess("报名成功！");
         } else {
@@ -44,9 +54,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Result deleteStudent(String studentId) {
-        if(studentMapper.deleteStudent(studentId) == 1)
+        Department department = departmentMapper.isExistDept(studentMapper.isExistStu(studentId).getDepartmentName());
+        if (studentMapper.deleteStudent(studentId) == 1) {
+            department.setRemaining(department.getRemaining() + 1);
+            departmentMapper.updateDepartment(department);
             return Result.ofSuccess("删除学生成功！");
-        else
+        } else
             return Result.ofFail("删除学生失败！");
     }
 
