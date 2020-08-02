@@ -9,7 +9,6 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -39,8 +38,8 @@ public class StudentController {
 
 
     @ApiOperation(value = "删除报名表",httpMethod = "DELETE")
-    @DeleteMapping(value = "/deleteStudent/{studentId}")
-    Result deleteStudents(@PathVariable String studentId){
+    @DeleteMapping(value = "/deleteStudent")
+    Result deleteStudents(@RequestParam String studentId){
         return studentService.deleteStudent(studentId);
     }
 }

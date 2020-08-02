@@ -36,8 +36,8 @@ public class AdminController {
     }
 
     @ApiOperation(value = "删除管理员",notes = "通过管理员账号删除管理员",httpMethod = "DELETE")
-    @DeleteMapping(value = "/deleteAdmin/{account}")
-    Result deleteAdmin(@PathVariable String adminAccount){
+    @DeleteMapping(value = "/deleteAdmin")
+    Result deleteAdmin(@RequestParam String adminAccount){
         return adminService.deleteAdmin(adminAccount);
     }
 
