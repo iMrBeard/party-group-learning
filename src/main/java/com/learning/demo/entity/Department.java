@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 @ApiModel("部门")
 public class Department {
     @ApiModelProperty("部门id")
+
     private Integer departmentId;
 
     @ApiModelProperty("部门名称")
