@@ -5,14 +5,8 @@ import com.learning.demo.entity.Result;
 import com.learning.demo.service.AdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.Model;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import java.util.List;
 
 @RestController
@@ -49,15 +43,7 @@ public class AdminController {
 
     @ApiOperation(value = "管理员登录！")
     @PostMapping(value = "/login")
-    Result login(String account, String pwd, Model model, HttpSession httpSession){
-        httpSession.setAttribute("userLoginInfo",account);
+    Result login(String account,String pwd){
         return adminService.login(account,pwd);
-    }
-
-    @ApiOperation(value="管理员登出")
-    @PostMapping(value = "/logOut")
-    Result logOut(HttpSession httpSession){
-        httpSession.removeAttribute("userLoginInfo");
-        return adminService.logOut();
     }
 }

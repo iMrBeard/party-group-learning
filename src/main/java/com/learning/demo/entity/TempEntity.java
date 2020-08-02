@@ -1,6 +1,5 @@
 package com.learning.demo.entity;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.Email;
@@ -9,7 +8,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-@ApiModel("注册")
 public class TempEntity {
     @NotBlank
     @Size(min = 13,max = 13,message = "请填写学号！")

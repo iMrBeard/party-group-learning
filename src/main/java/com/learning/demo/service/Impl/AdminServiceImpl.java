@@ -48,8 +48,4 @@ public class AdminServiceImpl implements AdminService {
             return Result.ofFail("登录成功！");
         }
     }
-
-    public Result logOut(){
-        return Result.ofSuccess("成功登出");
-    }
 }
