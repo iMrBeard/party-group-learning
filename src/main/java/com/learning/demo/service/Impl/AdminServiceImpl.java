@@ -45,7 +45,7 @@ public class AdminServiceImpl implements AdminService {
         } else if (!admin.getPwd().equals(pwd)){
             return Result.ofFail("密码错误！");
         } else {
-            return Result.ofFail("登录成功！");
+            return Result.ofSuccess("登录成功！");
         }
     }
 
