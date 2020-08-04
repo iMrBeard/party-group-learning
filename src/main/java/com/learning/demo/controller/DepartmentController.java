@@ -50,8 +50,8 @@ public class DepartmentController {
     }
 
     @ApiOperation(value = "删除部门",httpMethod = "DELETE")
-    @DeleteMapping(value = "/deleteDepartment/{departmentId}")
-    Result deleteDepartment(@PathVariable int departmentId){
+    @DeleteMapping(value = "/deleteDepartment")
+    Result deleteDepartment(@RequestParam int departmentId){
         return departmentService.deleteDepartment(departmentId);
     }
 }
