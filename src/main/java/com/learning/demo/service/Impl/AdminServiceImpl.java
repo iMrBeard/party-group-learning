@@ -16,9 +16,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Result addAdmin(Administrator administrator) {
-        if(adminMapper.isExistAdmin(administrator.getAccount())!=null)
+        if (adminMapper.isExistAdmin(administrator.getAccount()) != null)
             return Result.ofFail("管理员已经存在");
-        if(adminMapper.addAdmin(administrator) == 1)
+        if (adminMapper.addAdmin(administrator) == 1)
             return Result.ofSuccess("添加管理员成功！");
         else
             return Result.ofFail("添加管理员失败！");
@@ -26,7 +26,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Result deleteAdmin(String account) {
-        if(adminMapper.deleteAdmin(account) == 1)
+        if (adminMapper.deleteAdmin(account) == 1)
             return Result.ofSuccess("删除管理员成功！");
         else
             return Result.ofFail("删除管理员失败");
@@ -40,16 +40,16 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Result login(String account, String pwd) {
         Administrator admin = adminMapper.isExistAdmin(account);
-        if (admin == null){
+        if (admin == null) {
             return Result.ofFail("管理员不存在!");
-        } else if (!admin.getPwd().equals(pwd)){
+        } else if (!admin.getPwd().equals(pwd)) {
             return Result.ofFail("密码错误！");
         } else {
             return Result.ofSuccess("登录成功！");
         }
     }
 
-    public Result logOut(){
+    public Result logOut() {
         return Result.ofSuccess("成功登出");
     }
 }

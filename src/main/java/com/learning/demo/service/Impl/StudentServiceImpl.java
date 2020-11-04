@@ -10,6 +10,7 @@ import com.learning.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -24,25 +25,28 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     DepartmentMapper departmentMapper;
+
     @Override
     public Result addStudent(Student student, MultipartFile file) {
         Department department = departmentMapper.isExistDept(student.getDepartmentName());
-        if(studentMapper.isExistStu(student.getStudentId())!=null)
+        if (studentMapper.isExistStu(student.getStudentId()) != null)
             return Result.ofFail("你已经报名成功！无需再次报名");
         if (department.getRemaining() == 0)
             return Result.ofFail("该部门报名人数已达上限");
-        if(file.isEmpty())
+        if (file.isEmpty())
             return Result.ofFail("请上传头像");
+        String originalName = file.getOriginalFilename();
+        String imageType = originalName.substring(originalName.lastIndexOf('.'));
         try {
             byte[] bytes = file.getBytes();
-            File avatar = new File("/home/hxq/"+student.getRealName());
+            File avatar = new File("/home/hxq/" + student.getRealName() + imageType);
             file.transferTo(avatar);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        student.setAvatar("/home/hxq/"+student.getRealName());
+        student.setAvatar("/home/hxq/" + student.getRealName() + imageType);
         student.setRegisteredAt(LocalDateTime.now());
-        if(studentMapper.addStudent(student) == 1){
+        if (studentMapper.addStudent(student) == 1) {
             department.setRemaining(department.getRemaining() - 1);
             departmentMapper.updateDepartment(department);
             mailService.sendSimpleMail("719424727@qq.com", student.getEmail(), "content");
@@ -61,6 +65,18 @@ public class StudentServiceImpl implements StudentService {
             return Result.ofSuccess("删除学生成功！");
         } else
             return Result.ofFail("删除学生失败！");
+    }
+
+    @Override
+    public Result getStudentById(String studentId) {
+        Student student = studentMapper.getStudentById(studentId);
+        if (student != null) {
+            String avatarUrl = student.getAvatar();
+            student.setAvatar("http://172.16.6.82:8080/avatar" + avatarUrl.substring(avatarUrl.lastIndexOf('/')));
+            return Result.ofSuccess("获取学生报名表成功", student);
+        } else {
+            return Result.ofFail("获取学生报名表失败！");
+        }
     }
 
     @Override

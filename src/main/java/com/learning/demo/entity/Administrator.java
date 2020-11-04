@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-@ApiModel("管理员类")
+@ApiModel("管理员")
 public class Administrator {
 
     @ApiModelProperty("账户")

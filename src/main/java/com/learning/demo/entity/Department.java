@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -30,7 +31,7 @@ public class Department {
     private int remaining;
     private int capacity;
 
-    public Department(String departmentName,String description, int remaining, int capacity) {
+    public Department(String departmentName, String description, int remaining, int capacity) {
         this.departmentName = departmentName;
         this.description = description;
         this.remaining = remaining;

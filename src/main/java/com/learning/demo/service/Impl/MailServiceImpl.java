@@ -13,7 +13,7 @@ public class MailServiceImpl implements MailService {
     JavaMailSender sender;
 
     @Override
-    public void sendSimpleMail(String from,String to, String content) {
+    public void sendSimpleMail(String from, String to, String content) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(from);
         message.setTo(to);

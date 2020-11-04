@@ -1,6 +1,7 @@
 package com.learning.demo.mapper;
 
 import com.learning.demo.entity.Department;
+
 import java.util.List;
 
 public interface DepartmentMapper {

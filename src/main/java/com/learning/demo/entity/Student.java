@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
@@ -16,7 +17,7 @@ public class Student {
 
     @ApiModelProperty("学生id")
     @NotBlank
-    @Size(min = 13,max = 13,message = "请填写学号！")
+    @Size(min = 13, max = 13, message = "请填写学号！")
     private String studentId;
 
     @ApiModelProperty("学生班级")

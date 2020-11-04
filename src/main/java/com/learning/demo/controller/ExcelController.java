@@ -1,29 +1,46 @@
 package com.learning.demo.controller;
 
-import com.learning.demo.entity.Result;
-import com.learning.demo.service.Impl.ExcelServiceImpl;
+import com.learning.demo.service.ExcelService;
 import com.learning.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLEncoder;
 
 @RestController
 @RequestMapping(value = "/excel")
 public class ExcelController {
-
-    ExcelServiceImpl excel = new ExcelServiceImpl();
+    @Autowired
+    ExcelService excel;
     @Autowired
     StudentService studentService;
+    @Value("${excel.dir}")
+    String excelDir;
 
     @GetMapping(value = "/download")
-    public Result download() throws IOException {
-        String headers[] = {"姓名", "性别", "班级", "意向部门", "民族", "QQ", "邮箱", "自我描述", "是否接受调剂", "学号"};
-        return excel.download(studentService.getStudents(), headers);
+    @ResponseBody
+    public ResponseEntity download(HttpServletResponse response) throws IOException, FileNotFoundException {
+        excel.download(studentService.getStudents());
+        File file = new File(excelDir);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
-
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", String.format("attachment;filename=\"%s", URLEncoder.encode("报名表.xlsx", "UTF-8")));
+        headers.add("Cache-Control", "no-cache,no-store,must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+        ResponseEntity<Object> responseEntity = ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(file.length())
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(resource);
+        return responseEntity;
     }
-
 }

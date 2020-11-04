@@ -26,29 +26,40 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Result updateDepartment(Department department) {
         int total = studentMapper.numberOfRegistered(department.getDepartmentName());
-        department.setRemaining(department.getCapacity()-total);
-        if(departmentMapper.updateDepartment(department) == 1)
+        department.setRemaining(department.getCapacity() - total);
+        if (departmentMapper.updateDepartment(department) == 1)
             return Result.ofSuccess("部门更新成功！");
         else return Result.ofFail("部门更新失败！");
     }
 
     @Override
     public Result addDepartment(Department department) {
-        if(departmentMapper.isExistDept(department.getDepartmentName())!=null) {
+        if (departmentMapper.isExistDept(department.getDepartmentName()) != null) {
             return Result.ofFail("部门已经存在！");
         } else {
             department.setRemaining(department.getCapacity());
-            if(departmentMapper.addDepartment(department) == 1 )
+            if (departmentMapper.addDepartment(department) == 1)
                 return Result.ofSuccess("部门添加成功！");
             else
-                return Result.ofFail("部门添加失败");}
+                return Result.ofFail("部门添加失败");
+        }
     }
 
     @Override
     public Result deleteDepartment(Integer departmentId) {
-        if(departmentMapper.deleteDepartment(departmentId)==1)
+        if (departmentMapper.deleteDepartment(departmentId) == 1)
             return Result.ofSuccess("删除部门成功！");
         else
             return Result.ofFail("删除部门失败！");
+    }
+
+    @Override
+    public Result getDepartmentByName(String departmentName) {
+        Department department = departmentMapper.isExistDept(departmentName);
+        if (department != null) {
+            return Result.ofSuccess("获取部门成功", department);
+        } else {
+            return Result.ofFail("部门不存在");
+        }
     }
 }

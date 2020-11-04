@@ -2,6 +2,7 @@ package com.learning.demo.service;
 
 import com.learning.demo.entity.Department;
 import com.learning.demo.entity.Result;
+
 import java.util.List;
 
 public interface DepartmentService {
@@ -13,4 +14,6 @@ public interface DepartmentService {
     Result addDepartment(Department department);
 
     Result deleteDepartment(Integer departmentName);
+
+    Result getDepartmentByName(String departmentName);
 }

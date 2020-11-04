@@ -17,4 +17,6 @@ public interface StudentMapper {
 
     int numberOfRegistered(String departmentName);
 
+    Student getStudentById(String studentId);
+
 }

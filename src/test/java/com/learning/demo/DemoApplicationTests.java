@@ -95,6 +95,4 @@ class DemoApplicationTests {
 //        mailMessage.setText("请加群xxxxxxxxx。");
 //        javaMailSender.send(mailMessage);
 //    }
-
-
 }

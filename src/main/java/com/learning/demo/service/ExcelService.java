@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ExcelService {
-    public XSSFWorkbook creatExcel(List<Student> studentInfo, String[] headers);
+    XSSFWorkbook creatExcel(List<Student> studentInfo, String[] headers);
 
-    public Result download(List<Student> studentInfo, String[] headers) throws IOException;
+    Result download(List<Student> studentInfo) throws IOException;
 }

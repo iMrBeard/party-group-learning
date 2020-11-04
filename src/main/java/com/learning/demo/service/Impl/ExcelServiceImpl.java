@@ -6,11 +6,13 @@ import com.learning.demo.service.ExcelService;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
+import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+@Service
 public class ExcelServiceImpl implements ExcelService {
     public XSSFCellStyle setStyle(XSSFWorkbook workbook) {
         // 生成表格中非标题栏的样式
@@ -115,7 +117,7 @@ public class ExcelServiceImpl implements ExcelService {
 
                 cell = content.createCell(8);
                 cell.setCellStyle(cellStyle);
-                cell.setCellValue(student.isAdjustable());
+                cell.setCellValue(student.isAdjustable() ? "是" : "否");
 
                 cell = content.createCell(9);
                 cell.setCellStyle(cellStyle);
@@ -127,10 +129,11 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public Result download(List<Student> studentInfo, String[] headers) throws IOException {
+    public Result download(List<Student> studentInfo) throws IOException {
 
+        String headers[] = {"姓名", "性别", "班级", "意向部门", "民族", "QQ", "邮箱", "自我描述", "是否接受调剂", "学号"};
         try {
-            String localPath = "D:/报名表.xlsx";
+            String localPath = "/home/hxq/registrationForm.xlsx";
             XSSFWorkbook xssfWorkbook = creatExcel(studentInfo, headers);
             //生成excel表
             FileOutputStream out = new FileOutputStream(localPath);
