@@ -46,17 +46,10 @@ public class AdminController {
 
     @ApiOperation(value = "管理员登录！")
     @PostMapping(value = "/login")
-    Result login(@RequestBody HashMap<String,String> map, Model model, HttpSession httpSession) {
+    Result login(@RequestBody HashMap<String,String> map) {
         String account = map.get("account");
         String pwd = map.get("pwd");
-        httpSession.setAttribute("userLoginInfo", account);
         return adminService.login(account, pwd);
     }
 
-    @ApiOperation(value = "管理员登出")
-    @PostMapping(value = "/logOut")
-    Result logOut(HttpSession httpSession) {
-        httpSession.removeAttribute("userLoginInfo");
-        return adminService.logOut();
-    }
 }

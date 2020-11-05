@@ -15,5 +15,4 @@ public interface AdminService {
 
     Result login(String account, String pwd);
 
-    Result logOut();
 }

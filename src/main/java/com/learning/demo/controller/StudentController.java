@@ -44,7 +44,6 @@ public class StudentController {
         }
     }
 
-
     @ApiOperation(value = "删除报名表", httpMethod = "DELETE")
     @DeleteMapping(value = "/deleteStudent")
     Result deleteStudents(@RequestParam String studentId) {

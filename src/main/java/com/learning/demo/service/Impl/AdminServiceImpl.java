@@ -4,6 +4,7 @@ import com.learning.demo.entity.Administrator;
 import com.learning.demo.entity.Result;
 import com.learning.demo.mapper.AdminMapper;
 import com.learning.demo.service.AdminService;
+import com.learning.demo.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,11 +46,9 @@ public class AdminServiceImpl implements AdminService {
         } else if (!admin.getPwd().equals(pwd)) {
             return Result.ofFail("密码错误！");
         } else {
-            return Result.ofSuccess("登录成功！");
+            String token = JwtUtil.createToken(admin.getAccount(), admin.getAuthority());
+            return Result.ofSuccess(token);
         }
     }
 
-    public Result logOut() {
-        return Result.ofSuccess("成功登出");
-    }
 }
